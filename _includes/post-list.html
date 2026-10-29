@@ -1,0 +1,21 @@
+{%- comment -%} Usage: {% include post-list.html posts=some_posts heading="h3" %} {%- endcomment -%}
+{%- assign h = include.heading | default: "h2" -%}
+<ul class="post-list">
+  {%- for post in include.posts %}
+  <li class="post-list__item">
+    <article>
+      <{{ h }} class="post-list__title"><a href="{{ post.url | relative_url }}">{{ post.title | escape }}</a></{{ h }}>
+      <p class="post-meta">
+        <time datetime="{{ post.date | date_to_xmlschema }}">{{ post.date | date: "%B %-d, %Y" }}</time>
+        {%- if post.tags and post.tags.size > 0 %}
+        <span class="post-meta__sep" aria-hidden="true">·</span>
+        <span class="tags tags--inline">{% for t in post.tags %}<span class="tag">{{ t | escape }}</span>{% endfor %}</span>
+        {%- endif %}
+      </p>
+      {%- if post.summary %}
+      <p class="post-list__summary">{{ post.summary | escape }}</p>
+      {%- endif %}
+    </article>
+  </li>
+  {%- endfor %}
+</ul>

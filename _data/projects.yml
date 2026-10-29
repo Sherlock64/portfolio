@@ -1,0 +1,24 @@
+# Projects shown on the homepage.
+#
+# The only required field is `repo` (owner/repo-name). Each build fetches
+# the description, language, topics, stars, homepage, and last-updated
+# date from GitHub.
+#
+# Optional overrides (these replace the GitHub data):
+#   title:       Display name (default: the repo name)
+#   description: One or two sentences
+#   image:       Path or URL to a screenshot, e.g. /assets/img/foo.png
+#   demo_url:    Live demo link (default: the repo's homepage URL)
+#   tags:        List of tags (default: the repo's topics)
+#   featured:    true to pin the project to the top
+#
+# Example with overrides:
+#
+# - repo: Sherlock64/portfolio
+#   title: Portfolio Site
+#   description: The site you're looking at, built with Jekyll and GitHub Actions.
+#   demo_url: https://sherlock64.github.io
+#   tags: [jekyll, github-actions]
+#   featured: true
+
+- repo: Sherlock64/skills

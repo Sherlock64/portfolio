@@ -1,0 +1,78 @@
+# =====================================================================
+#  Site settings: edit the values below. Comments explain each one.
+#  (If you're running the site locally, restart `jekyll serve` after
+#  you change this file.)
+# =====================================================================
+
+name: Patrick Behnke
+title: Patrick Behnke
+tagline: Platform Engineering with a specialty in Automation
+description: >-
+  Patrick Behnke: platform engineer specializing in automation.
+  Projects, writing, and contact info.
+
+# Short bio shown on the homepage. Markdown is allowed.
+bio: >-
+  I'm a platform engineer who builds the paved roads other engineers drive on:
+  CI/CD pipelines, infrastructure as code, and the automation that turns
+  repetitive toil into a single command. I care about systems that are
+  boring to operate, easy to reason about, and fast to change.
+
+email: behnke.tech.2010@gmail.com
+github_username: Sherlock64
+# Your LinkedIn profile URL, e.g. https://www.linkedin.com/in/your-handle
+# Leave it empty to hide the LinkedIn link.
+linkedin_url: "https://www.linkedin.com/in/patrickbehnke42/"
+
+# ---------------------------------------------------------------------
+# "Request my resume" button. This text opens prefilled in the visitor's
+# email client. Line breaks are kept. Special characters are encoded
+# automatically.
+# ---------------------------------------------------------------------
+resume_request:
+  button_label: Request my resume
+  subject: "Resume Request – Patrick Behnke"
+  body: |-
+    Hi Patrick,
+
+    I'd like to request a copy of your resume.
+
+    Name:
+    Company:
+    Role/Opportunity:
+
+    Details:
+
+    Thanks!
+
+# How many recent posts to show on the homepage.
+homepage_posts: 3
+
+# ---------------------------------------------------------------------
+# URL settings
+#   url:     your site's origin (no trailing slash)
+#   baseurl: "" for a Sherlock64.github.io repo, or "/repo-name" for a
+#            project repo. On GitHub Actions the workflow sets baseurl for
+#            you automatically, so this value is mainly for local builds.
+# ---------------------------------------------------------------------
+url: "https://sherlock64.github.io"
+baseurl: ""
+
+# ---------------------------------------------------------------------
+# Build settings (you shouldn't need to change these)
+# ---------------------------------------------------------------------
+markdown: kramdown
+kramdown:
+  input: GFM
+  syntax_highlighter: rouge
+  hard_wrap: false
+sass:
+  style: compressed
+  sourcemap: never
+exclude:
+  - README.md
+  - Gemfile
+  - Gemfile.lock
+  - scripts/
+  - vendor/
+  - .github/

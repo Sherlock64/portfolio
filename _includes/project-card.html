@@ -1,0 +1,36 @@
+{%- assign p = include.project -%}
+{%- assign repo_name = p.repo | split: "/" | last -%}
+{%- assign title = p.title | default: repo_name -%}
+{%- assign repo_url = "https://github.com/" | append: p.repo -%}
+{%- if p.repo_url -%}{%- assign repo_url = p.repo_url -%}{%- endif -%}
+{%- assign tags = p.tags | default: p.topics -%}
+{%- assign demo = p.demo_url | default: p.homepage -%}
+<article class="card{% if p.featured %} card--featured{% endif %}">
+  {%- if p.image %}
+  <img class="card__image" src="{{ p.image | relative_url }}" alt="Screenshot of {{ title | escape }}" width="640" height="360" loading="lazy" decoding="async">
+  {%- endif %}
+  <div class="card__body">
+    <h3 class="card__title">
+      {% include icon.html name="github" %}
+      <a href="{{ repo_url }}">{{ title | escape }}</a>
+      {%- if p.featured %} <span class="badge">Featured</span>{% endif %}
+    </h3>
+    {%- if p.description %}
+    <p class="card__text">{{ p.description | escape }}</p>
+    {%- endif %}
+    {%- if tags and tags.size > 0 %}
+    <p class="tags"><span class="visually-hidden">Tags:</span>{% for t in tags %}<span class="tag">{{ t | escape }}</span>{% endfor %}</p>
+    {%- endif %}
+    <ul class="card__meta">
+      {%- if p.language %}<li><span class="lang-dot" aria-hidden="true"></span>{{ p.language | escape }}</li>{% endif %}
+      {%- if p.stars != nil %}<li>{% include icon.html name="star" %} {{ p.stars }}<span class="visually-hidden"> stars</span></li>{% endif %}
+      {%- if p.updated_at %}<li>Updated <time datetime="{{ p.updated_at }}">{{ p.updated_at | date: "%b %Y" }}</time></li>{% endif %}
+    </ul>
+    <p class="card__links">
+      <a href="{{ repo_url }}">Source<span class="visually-hidden"> code for {{ title | escape }}</span></a>
+      {%- if demo and demo != "" %}
+      <a href="{{ demo | relative_url }}">Live demo<span class="visually-hidden"> of {{ title | escape }}</span> {% include icon.html name="external" %}</a>
+      {%- endif %}
+    </p>
+  </div>
+</article>

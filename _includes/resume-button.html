@@ -1,0 +1,2 @@
+{%- assign r = site.resume_request -%}
+<a class="md-button md-button--primary" href="mailto:{{ site.email }}?subject={{ r.subject | mailto_encode }}&amp;body={{ r.body | mailto_encode }}">{% include icon.html name="mail" %} {{ r.button_label | default: "Request my resume" }}</a>

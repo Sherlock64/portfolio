@@ -1,0 +1,11 @@
+---
+layout: page
+title: Blog
+summary: Writing on platform engineering and automation.
+---
+<p class="lead">Writing on platform engineering and automation. <a href="{{ '/feed.xml' | relative_url }}">Subscribe via RSS</a>.</p>
+{%- if site.blog_posts.size > 0 %}
+{% include post-list.html posts=site.blog_posts heading="h2" %}
+{%- else %}
+<p>No posts yet.</p>
+{%- endif %}

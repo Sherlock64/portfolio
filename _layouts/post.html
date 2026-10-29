@@ -1,0 +1,41 @@
+---
+layout: default
+---
+{%- assign idx = nil -%}
+{%- for p in site.blog_posts -%}{%- if p.url == page.url -%}{%- assign idx = forloop.index0 -%}{%- endif -%}{%- endfor -%}
+<article>
+  <header class="post-header">
+    <h1>{{ page.title | escape }}</h1>
+    <p class="post-meta">
+      <time datetime="{{ page.date | date_to_xmlschema }}">{{ page.date | date: "%B %-d, %Y" }}</time>
+      {%- if page.tags and page.tags.size > 0 %}
+      <span class="post-meta__sep" aria-hidden="true">·</span>
+      <span class="visually-hidden">Tags:</span>
+      <span class="tags tags--inline">{% for t in page.tags %}<span class="tag">{{ t | escape }}</span>{% endfor %}</span>
+      {%- endif %}
+    </p>
+  </header>
+  {{ content }}
+</article>
+
+{%- if idx != nil %}
+{%- assign newer = nil -%}{%- assign older = nil -%}
+{%- if idx > 0 -%}{%- assign ni = idx | minus: 1 -%}{%- assign newer = site.blog_posts[ni] -%}{%- endif -%}
+{%- assign oi = idx | plus: 1 -%}{%- assign older = site.blog_posts[oi] -%}
+{%- if newer or older %}
+<nav class="post-pager" aria-label="More posts">
+  {%- if older %}
+  <a class="post-pager__link post-pager__link--prev" href="{{ older.url | relative_url }}" rel="prev">
+    {% include icon.html name="arrow-left" %}
+    <span><span class="post-pager__dir">Previous</span><span class="post-pager__title">{{ older.title | escape }}</span></span>
+  </a>
+  {%- endif %}
+  {%- if newer %}
+  <a class="post-pager__link post-pager__link--next" href="{{ newer.url | relative_url }}" rel="next">
+    <span><span class="post-pager__dir">Next</span><span class="post-pager__title">{{ newer.title | escape }}</span></span>
+    {% include icon.html name="arrow-right" %}
+  </a>
+  {%- endif %}
+</nav>
+{%- endif %}
+{%- endif %}

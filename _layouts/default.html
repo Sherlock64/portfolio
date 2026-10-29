@@ -1,0 +1,24 @@
+<!doctype html>
+<html lang="en" class="no-js" data-theme="dark">
+{% include head.html %}
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  {% include site-header.html %}
+  <div class="md-backdrop" data-nav-close></div>
+  <div class="md-grid">
+    <aside id="site-nav" class="md-sidebar md-sidebar--primary">
+      {% include nav.html %}
+    </aside>
+    <main id="main" class="md-content" tabindex="-1">
+      {% include breadcrumbs.html %}
+      <div class="md-typeset">
+        {{ content }}
+      </div>
+    </main>
+    <aside class="md-sidebar md-sidebar--secondary">
+      {% include toc.html html=content %}
+    </aside>
+  </div>
+  {% include footer.html %}
+</body>
+</html>

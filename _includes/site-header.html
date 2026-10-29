@@ -1,0 +1,33 @@
+<header class="md-header">
+  <div class="md-header__inner">
+    <button class="md-header__button md-nav-toggle" type="button" data-nav-toggle aria-controls="site-nav" aria-expanded="false" aria-label="Open navigation">
+      {% include icon.html name="menu" %}
+    </button>
+    <a class="md-header__brand" href="{{ '/' | relative_url }}">
+      <span class="md-logo" aria-hidden="true">PB</span>
+      <span class="md-header__title">{{ site.name }}</span>
+    </a>
+
+    <div class="md-search" role="search">
+      <label for="search-input" class="visually-hidden">Search the site</label>
+      <span class="md-search__icon">{% include icon.html name="search" %}</span>
+      <input id="search-input" class="md-search__input" type="search" placeholder="Search" autocomplete="off" spellcheck="false"
+             aria-controls="search-results" data-index="{{ '/search.json' | relative_url }}">
+      <kbd class="md-search__kbd" aria-hidden="true">Ctrl K</kbd>
+      <div id="search-results" class="md-search__results" hidden>
+        <ul class="md-search__list"></ul>
+      </div>
+      <p id="search-status" class="visually-hidden" aria-live="polite"></p>
+    </div>
+
+    <button class="md-header__button md-theme-toggle" type="button" data-theme-toggle aria-label="Switch to light mode">
+      <span class="icon-sun">{% include icon.html name="sun" %}</span>
+      <span class="icon-moon">{% include icon.html name="moon" %}</span>
+    </button>
+    <a class="md-header__source" href="https://github.com/{{ site.github_username }}">
+      {% include icon.html name="github" %}
+      <span class="md-header__source-name">{{ site.github_username }}</span>
+      <span class="visually-hidden"> on GitHub</span>
+    </a>
+  </div>
+</header>

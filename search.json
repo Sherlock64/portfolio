@@ -1,0 +1,23 @@
+---
+layout: null
+permalink: /search.json
+render_last: true
+---
+{%- assign home = '/' | relative_url -%}
+{%- assign projects = site.data.projects_generated | default: site.data.projects -%}
+{%- capture skills -%}{%- for g in site.data.skills -%}{{ g.category }} {{ g.items | join: " " }} {% endfor -%}{%- endcapture -%}
+[
+  {"title": "About", "section": "Home", "url": {{ home | jsonify }}, "tags": "", "body": {{ site.tagline | append: ". " | append: site.bio | strip_html | normalize_whitespace | jsonify }}},
+  {"title": "Skills", "section": "Home", "url": {{ home | append: "#skills" | jsonify }}, "tags": "", "body": {{ skills | normalize_whitespace | jsonify }}},
+  {"title": "Contact", "section": "Home", "url": {{ home | append: "#contact" | jsonify }}, "tags": "resume email", "body": {{ "Email " | append: site.email | append: ". Request my resume." | jsonify }}}
+  {%- for post in site.blog_posts %},
+  {"title": {{ post.title | jsonify }}, "section": "Blog", "url": {{ post.url | relative_url | jsonify }}, "tags": {{ post.tags | join: " " | jsonify }}, "body": {{ post.content | strip_html | normalize_whitespace | truncate: 4000 | jsonify }}}
+  {%- endfor %}
+  {%- for p in projects %}
+  {%- assign t = p.repo | split: "/" | last -%}
+  {%- assign tags = p.tags | default: p.topics -%}
+  {%- assign url = "https://github.com/" | append: p.repo -%}
+  {%- if p.repo_url -%}{%- assign url = p.repo_url -%}{%- endif %},
+  {"title": {{ p.title | default: t | jsonify }}, "section": "Projects", "url": {{ url | jsonify }}, "tags": {{ tags | join: " " | jsonify }}, "body": {{ p.description | append: " " | append: p.language | jsonify }}}
+  {%- endfor %}
+]

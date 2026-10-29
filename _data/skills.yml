@@ -1,0 +1,23 @@
+# Skills shown on the homepage, grouped by category.
+# Add, remove, or reorder categories and items freely.
+- category: Automation
+  items:
+    - Ansible
+    - Terraform
+    - Python
+    - Bash
+    - GitHub Actions
+
+- category: Platform & Cloud
+  items:
+    - Kubernetes
+    - Docker
+    - AWS
+    - Linux
+
+- category: Practices
+  items:
+    - CI/CD
+    - Infrastructure as Code
+    - Observability
+    - Developer Experience

@@ -1,0 +1,8 @@
+_site/
+.jekyll-cache/
+.jekyll-metadata
+.sass-cache/
+.bundle/
+vendor/
+# Generated at build time by scripts/fetch_projects.rb
+_data/projects_generated.json

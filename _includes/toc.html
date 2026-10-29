@@ -1,0 +1,21 @@
+{%- comment -%}
+  Builds the "On this page" list from the <h2 id="..."> headings in the
+  rendered page. Headings without an id are skipped.
+{%- endcomment -%}
+{%- assign parts = include.html | split: "<h2" -%}
+{%- capture items -%}
+  {%- for part in parts offset: 1 -%}
+    {%- assign attrs = part | split: ">" | first -%}
+    {%- if attrs contains 'id="' -%}
+      {%- assign id = attrs | split: 'id="' | last | split: '"' | first -%}
+      {%- assign text = part | split: "</h2>" | first | remove_first: attrs | remove_first: ">" | strip_html | strip -%}
+      <li><a class="md-toc__link" href="#{{ id }}">{{ text }}</a></li>
+    {%- endif -%}
+  {%- endfor -%}
+{%- endcapture -%}
+{%- if items != "" %}
+<nav class="md-toc" aria-labelledby="toc-title">
+  <p id="toc-title" class="md-toc__title">On this page</p>
+  <ul class="md-toc__list">{{ items }}</ul>
+</nav>
+{%- endif -%}

@@ -1,0 +1,34 @@
+---
+layout: null
+permalink: /feed.xml
+render_last: true
+sitemap: false
+---
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>{{ site.name | xml_escape }}</title>
+  <subtitle>{{ site.tagline | xml_escape }}</subtitle>
+  <link href="{{ '/feed.xml' | absolute_url }}" rel="self" type="application/atom+xml"/>
+  <link href="{{ '/' | absolute_url }}" rel="alternate" type="text/html"/>
+  <id>{{ '/' | absolute_url }}</id>
+  <updated>{% if site.blog_posts.size > 0 %}{{ site.blog_posts.first.date | date_to_xmlschema }}{% else %}{{ site.time | date_to_xmlschema }}{% endif %}</updated>
+  <author>
+    <name>{{ site.name | xml_escape }}</name>
+  </author>
+  {%- for post in site.blog_posts limit: 20 %}
+  <entry>
+    <title>{{ post.title | xml_escape }}</title>
+    <link href="{{ post.url | absolute_url }}" rel="alternate" type="text/html"/>
+    <id>{{ post.url | absolute_url }}</id>
+    <published>{{ post.date | date_to_xmlschema }}</published>
+    <updated>{{ post.date | date_to_xmlschema }}</updated>
+    {%- for t in post.tags %}
+    <category term="{{ t | xml_escape }}"/>
+    {%- endfor %}
+    {%- if post.summary %}
+    <summary>{{ post.summary | xml_escape }}</summary>
+    {%- endif %}
+    <content type="html">{{ post.content | xml_escape }}</content>
+  </entry>
+  {%- endfor %}
+</feed>

@@ -1,0 +1,63 @@
+---
+layout: default
+title: Home
+---
+<section class="hero" aria-labelledby="about">
+  <h1 id="about">{{ site.name }}</h1>
+  <p class="hero__tagline">{{ site.tagline }}</p>
+  <div class="hero__bio">{{ site.bio | markdownify }}</div>
+  <p class="hero__actions">
+    {% include resume-button.html %}
+    <a class="md-button" href="https://github.com/{{ site.github_username }}">{% include icon.html name="github" %} GitHub</a>
+    {%- if site.linkedin_url and site.linkedin_url != "" %}
+    <a class="md-button" href="{{ site.linkedin_url }}">{% include icon.html name="linkedin" %} LinkedIn</a>
+    {%- endif %}
+  </p>
+</section>
+
+<section aria-labelledby="skills">
+  <h2 id="skills">Skills</h2>
+  <div class="grid-cards">
+    {%- for group in site.data.skills %}
+    <div class="card">
+      <div class="card__body">
+        <h3 class="card__title">{{ group.category | escape }}</h3>
+        <p class="tags">{% for s in group.items %}<span class="tag">{{ s | escape }}</span>{% endfor %}</p>
+      </div>
+    </div>
+    {%- endfor %}
+  </div>
+</section>
+
+<section aria-labelledby="projects">
+  <h2 id="projects">Projects</h2>
+  {%- assign projects = site.data.projects_generated | default: site.data.projects -%}
+  {%- assign featured = projects | where: "featured", true -%}
+  {%- assign others = projects | where_exp: "p", "p.featured != true" -%}
+  {%- assign ordered = featured | concat: others %}
+  <div class="grid-cards">
+    {%- for p in ordered %}
+    {% include project-card.html project=p %}
+    {%- endfor %}
+  </div>
+</section>
+
+<section aria-labelledby="recent-posts">
+  <h2 id="recent-posts">Recent posts</h2>
+  {%- assign recent = site.blog_posts | slice: 0, site.homepage_posts %}
+  {%- if recent.size > 0 %}
+  {% include post-list.html posts=recent heading="h3" %}
+  <p><a class="more-link" href="{{ '/blog/' | relative_url }}">All posts {% include icon.html name="arrow-right" %}</a></p>
+  {%- else %}
+  <p>No posts yet.</p>
+  {%- endif %}
+</section>
+
+<section aria-labelledby="contact">
+  <h2 id="contact">Contact</h2>
+  <div class="admonition info">
+    <p>Get in touch</p>
+    <p>You can reach me at <a href="mailto:{{ site.email }}">{{ site.email }}</a>. I share my resume on request: the button below opens a prefilled email.</p>
+    <p>{% include resume-button.html %}</p>
+  </div>
+</section>

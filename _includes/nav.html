@@ -1,0 +1,40 @@
+{%- assign home = '/' | relative_url -%}
+{%- assign on_home = false -%}{%- if page.url == "/" -%}{%- assign on_home = true -%}{%- endif -%}
+{%- assign anchor_base = home -%}{%- if on_home -%}{%- assign anchor_base = "" -%}{%- endif -%}
+<nav class="md-nav" aria-label="Site">
+  <p class="md-nav__drawer-title">
+    <span class="md-logo" aria-hidden="true">PB</span> {{ site.name }}
+  </p>
+  <ul class="md-nav__list">
+    <li class="md-nav__item">
+      <a class="md-nav__link md-nav__link--section{% if on_home %} is-active{% endif %}" href="{{ home }}"{% if on_home %} aria-current="page"{% endif %}>Home</a>
+      <ul class="md-nav__list md-nav__list--nested">
+        <li><a class="md-nav__link" href="{{ anchor_base }}#skills">Skills</a></li>
+        <li><a class="md-nav__link" href="{{ anchor_base }}#projects">Projects</a></li>
+        <li><a class="md-nav__link" href="{{ anchor_base }}#recent-posts">Recent posts</a></li>
+        <li><a class="md-nav__link" href="{{ anchor_base }}#contact">Contact</a></li>
+      </ul>
+    </li>
+    <li class="md-nav__item">
+      {%- assign on_blog = false -%}{%- if page.url == "/blog/" -%}{%- assign on_blog = true -%}{%- endif %}
+      <a class="md-nav__link md-nav__link--section{% if on_blog %} is-active{% endif %}" href="{{ '/blog/' | relative_url }}"{% if on_blog %} aria-current="page"{% endif %}>Blog</a>
+      <ul class="md-nav__list md-nav__list--nested">
+        {%- assign nav_posts = site.blog_posts | slice: 0, 10 %}
+        {%- for post in nav_posts %}
+        {%- assign current = false -%}{%- if post.url == page.url -%}{%- assign current = true -%}{%- endif %}
+        <li><a class="md-nav__link{% if current %} is-active{% endif %}" href="{{ post.url | relative_url }}"{% if current %} aria-current="page"{% endif %}>{{ post.title | escape }}</a></li>
+        {%- endfor %}
+      </ul>
+    </li>
+    <li class="md-nav__item">
+      <span class="md-nav__link md-nav__link--section md-nav__label">Elsewhere</span>
+      <ul class="md-nav__list md-nav__list--nested">
+        <li><a class="md-nav__link" href="https://github.com/{{ site.github_username }}">GitHub</a></li>
+        {%- if site.linkedin_url and site.linkedin_url != "" %}
+        <li><a class="md-nav__link" href="{{ site.linkedin_url }}">LinkedIn</a></li>
+        {%- endif %}
+        <li><a class="md-nav__link" href="{{ '/feed.xml' | relative_url }}">RSS feed</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>

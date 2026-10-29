@@ -1,0 +1,10 @@
+{%- if page.url != "/" %}
+<nav class="md-path" aria-label="Breadcrumb">
+  <ol>
+    <li><a href="{{ '/' | relative_url }}">Home</a></li>
+    {%- if page.is_post %}
+    <li><a href="{{ '/blog/' | relative_url }}">Blog</a></li>
+    {%- endif %}
+  </ol>
+</nav>
+{%- endif -%}
