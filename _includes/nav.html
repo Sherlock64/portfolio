@@ -3,7 +3,7 @@
 {%- assign anchor_base = home -%}{%- if on_home -%}{%- assign anchor_base = "" -%}{%- endif -%}
 <nav class="md-nav" aria-label="Site">
   <p class="md-nav__drawer-title">
-    <span class="md-logo" aria-hidden="true">PB</span> {{ site.name }}
+    {% include logo.html %} {{ site.name }}
   </p>
   <ul class="md-nav__list">
     <li class="md-nav__item">

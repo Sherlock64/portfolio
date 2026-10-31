@@ -157,10 +157,13 @@ img { max-width: 100%; height: auto; }
 .md-header__title { overflow: hidden; text-overflow: ellipsis; }
 
 .md-logo {
-  display: inline-grid; place-items: center;
-  width: 1.9rem; height: 1.9rem; border-radius: 0.4rem;
-  background: #ffffff; color: #3f51b5;
-  font-weight: 700; font-size: 0.8rem; letter-spacing: 0.02em;
+  display: inline-block; flex: none; vertical-align: middle;
+  width: 1.9rem; height: 1.9rem;
+}
+.md-logo__cursor { animation: md-blink 1.2s steps(1) infinite; }
+@keyframes md-blink { 50% { opacity: 0; } }
+@media (prefers-reduced-motion: reduce) {
+  .md-logo__cursor { animation: none; }
 }
 
 .md-header__button {
