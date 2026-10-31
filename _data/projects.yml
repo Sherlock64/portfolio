@@ -21,4 +21,7 @@
 #   tags: [jekyll, github-actions]
 #   featured: true
 
+- repo: Sherlock64/ansible-infra-cd
+  tags: [ansible, aap, gitops, django]
+
 - repo: Sherlock64/skills
