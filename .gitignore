@@ -6,3 +6,5 @@ _site/
 vendor/
 # Generated at build time by scripts/fetch_projects.rb
 _data/projects_generated.json
+# Scratch build used by .claude/skills/write-blog-post/check-post.sh
+.jekyll-check/
