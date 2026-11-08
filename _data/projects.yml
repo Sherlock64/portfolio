@@ -22,3 +22,6 @@
 #   featured: true
 
 - repo: Sherlock64/skills
+
+- repo: Sherlock64/osusume
+  image: /assets/images/osusume_recommendation_canvas.png
