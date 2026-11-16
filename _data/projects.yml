@@ -25,3 +25,6 @@
 
 - repo: Sherlock64/osusume
   image: /assets/images/osusume_recommendation_canvas.png
+
+- repo: Sherlock64/zeni
+  image: /assets/images/zeni_transactions.png
